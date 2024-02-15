@@ -16,4 +16,14 @@ export default {
   fillPassword(password) {
     cy.get("#password").type(password);
   },
+
+  checkSuccessMessage(message, email) {
+    cy.get("#swal2-title")
+      .should("be.visible")
+      .should("have.text", message);
+
+    cy.get("#swal2-html-container", {timeout: 3000})
+      .should("be.visible")
+      .should("contain.text", `Olá, ${email}`);
+  },
 };
